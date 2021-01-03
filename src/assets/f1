@@ -1,0 +1,14 @@
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Connection: keep-alive
+Content-Length: 19
+Content-Type: application/json
+Cookie: Webstorm-953cfc34=cc6717bc-a774-42ba-be92-a155d8fd5280; Webstorm-953cfc33=9d2947c5-f5b7-4f51-8d9d-4b15087ddf7f; JSESSIONID=91CFE67B7095954DC0F209E065442D2D
+Host: localhost:8080
+Origin: http://localhost:8080
+Referer: http://localhost:8080/product
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36
