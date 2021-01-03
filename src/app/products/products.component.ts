@@ -10,9 +10,9 @@ export class ProductsComponent implements OnInit {
   public products;
 
   constructor(private http: HttpService) {
+    this.products = this.http.getProducts();
   }
 
   ngOnInit(): void {
-    this.products = this.http.getProducts();
   }
 }
