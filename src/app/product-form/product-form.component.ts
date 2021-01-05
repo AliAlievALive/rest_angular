@@ -19,7 +19,8 @@ export class ProductFormComponent implements OnInit, OnChanges {
 
   public save(): void {
     if (this.newProduct.name) {
-      this.product.emit(this.http.save(this.newProduct));
+      this.http.save(this.newProduct);
+      this.product.emit(this.newProduct);
       this.newProduct.id = undefined;
       this.newProduct.name = '';
     }

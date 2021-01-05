@@ -16,7 +16,8 @@ export class AppComponent {
     this.products = this.http.getProducts();
   }
 
-  getProductsFromServer(): void {
+  getProductsFromServer(product: Product): void {
+    this.products.push(product);
     this.products = this.http.getProducts();
   }
 
