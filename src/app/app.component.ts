@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Product} from './models/Product';
+import {HttpService} from './services/http.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'shop';
+  products: Array<Product>;
+  productToUpdate: Product;
+
+  constructor(private http: HttpService) {
+    this.products = this.http.getProducts();
+  }
+
+  getProductsFromServer(product: Product): void {
+    this.products.push(product);
+    this.products = this.http.getProducts();
+  }
+
+  updatedProduct(productToUpdate: Product): void {
+    this.productToUpdate = productToUpdate;
+  }
 }
