@@ -1,2 +1,2 @@
-<app-product-form></app-product-form>
-<app-products></app-products>
+<app-product-form (product)="getProductsFromServer()" [updatedProduct]="productToUpdate"></app-product-form>
+<app-products [products]="products" (editedProduct)="updatedProduct($event)"></app-products>

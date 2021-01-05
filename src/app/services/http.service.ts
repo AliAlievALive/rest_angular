@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Product} from '../models/Product';
 
 @Injectable({
@@ -20,11 +20,24 @@ export class HttpService {
     return result;
   }
 
-  public save(name): void {
-    // const myHeaders = new HttpHeaders().set('Authorization', 'my-auth-token');
-    const body = {text: name};
-    this.http.post<any>('http://localhost:8080/product', body).subscribe(res => {
+  public save(product: Product): Product {
+    if (product.id) {
+      return this.edit(product);
+    } else {
+      const body = {name: product.name};
+      this.http.post<Product>('http://localhost:8080/product', body).subscribe(res => {
+        return res;
+      });
+    }
+    return ;
+  }
+
+  private edit(product: Product): Product {
+    const body = {name: product.name};
+    this.http.put(`http://localhost:8080/product/${product.id}`, body).subscribe(res => {
       console.log(res);
+      return res;
     });
+    return ;
   }
 }

@@ -1,18 +1,26 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpService} from '../services/http.service';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Product} from '../models/Product';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
-  public products;
+export class ProductsComponent implements OnInit, OnChanges {
+  @Input() products;
+  @Output() editedProduct: EventEmitter<Product> = new EventEmitter<Product>();
 
-  constructor(private http: HttpService) {
-    this.products = this.http.getProducts();
+  constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  edit(product: Product): void {
+    this.editedProduct.emit(product);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 }

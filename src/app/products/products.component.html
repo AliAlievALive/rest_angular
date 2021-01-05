@@ -1,4 +1,7 @@
 <div *ngFor="let product of products">
   <i>({{product.id}})</i>
   {{product.name}}
+  <span>
+    <input type="button" value="Edit" (click)="edit(product)">
+  </span>
 </div>
