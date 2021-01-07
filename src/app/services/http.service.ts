@@ -40,4 +40,8 @@ export class HttpService {
     });
     return ;
   }
+
+  delete(id: number): void {
+    this.http.delete(`http://localhost:8080/product/${id}`).subscribe();
+  }
 }

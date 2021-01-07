@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {HttpService} from '../services/http.service';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Product} from '../models/Product';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-product-form',
@@ -8,27 +8,31 @@ import {Product} from '../models/Product';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit, OnChanges {
-  @Output() product: EventEmitter<Product> = new EventEmitter<Product>();
-  @Input() updatedProduct: Product;
-  newProduct: Product = new Product(undefined, '');
-  constructor(private http: HttpService) {
+  @Input() products: Array<Product>;
+  @Input() editedProduct: Product;
+  newProduct: Product = {name: ''} as Product;
+
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
   }
 
   public save(): void {
-    if (this.newProduct.name) {
-      this.http.save(this.newProduct);
-      this.product.emit(this.newProduct);
-      this.newProduct.id = undefined;
-      this.newProduct.name = '';
+    if (this.newProduct.id) {
+      this.http.put(`http://localhost:8080/product/${this.newProduct.id}`, {name: this.newProduct.name}).subscribe(data => {
+      });
+    } else {
+      this.http.post<Product>('http://localhost:8080/product', this.newProduct).subscribe(data => {
+        this.products.push(data);
+      });
     }
+    this.newProduct = {id: undefined, name: ''};
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.updatedProduct) {
-      this.newProduct = changes.updatedProduct.currentValue;
+    if (changes.editedProduct.currentValue) {
+      this.newProduct = changes.editedProduct.currentValue;
     }
   }
 }

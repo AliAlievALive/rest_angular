@@ -23,4 +23,9 @@ export class AppComponent {
   updatedProduct(productToUpdate: Product): void {
     this.productToUpdate = productToUpdate;
   }
+
+  deleteProduct(product: Product): void {
+    this.http.delete(product.id);
+    this.products.splice(this.products.indexOf(product), 1);
+  }
 }

@@ -1,14 +1,16 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../models/Product';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit, OnChanges {
+export class ProductsComponent implements OnInit {
   @Input() products;
-  @Output() editedProduct: EventEmitter<Product> = new EventEmitter<Product>();
+  product: Product;
+  @Output() productDel: EventEmitter<Product> = new EventEmitter<Product>();
 
   constructor() {
   }
@@ -16,11 +18,11 @@ export class ProductsComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-  edit(product: Product): void {
-    this.editedProduct.emit(product);
+  editProduct(productFromRow): void {
+    this.product = productFromRow;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+  deleteProduct(deleteProduct: Product): void {
+    this.productDel.emit(deleteProduct);
   }
 }
