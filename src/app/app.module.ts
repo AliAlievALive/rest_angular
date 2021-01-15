@@ -3,17 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import { ProductsComponent } from './products/products.component';
-import { ProductFormComponent } from './product-form/product-form.component';
 import {FormsModule} from '@angular/forms';
-import { ProductRowComponent } from './product-row/product-row.component';
+import { TransportFormComponent } from './transport-form/transport-form.component';
+import { FormsHeadComponent } from './forms-head/forms-head.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent,
-    ProductFormComponent,
-    ProductRowComponent
+    TransportFormComponent,
+    FormsHeadComponent
   ],
   imports: [
     BrowserModule,

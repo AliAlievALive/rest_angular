@@ -1,0 +1,7 @@
+<div>
+  <h4>{{head.title}}</h4>
+  <i *ngFor="let button of head.buttons">
+    <button (click)="commandRoute(button.command)">{{button.label}}
+    </button>
+  </i>
+</div>
